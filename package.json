@@ -1,0 +1,29 @@
+{
+  "name": "optimism-calendar-slack-app",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "keywords": ["optimism", "slack", "calendar"],
+  "author": "",
+  "license": "ISC",
+  "description": "Slack App for Optimism Governance Calendar notifications",
+  "dependencies": {
+    "@slack/bolt": "^3.17.0",
+    "googleapis": "^129.0.0",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.4.1",
+    "moment-timezone": "^0.5.45"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/node-cron": "^3.0.11",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
