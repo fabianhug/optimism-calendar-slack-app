@@ -8,16 +8,21 @@
     "build": "tsc",
     "watch": "tsc -w"
   },
-  "keywords": ["optimism", "slack", "calendar"],
+  "keywords": [
+    "optimism",
+    "slack",
+    "calendar"
+  ],
   "author": "",
   "license": "ISC",
   "description": "Slack App for Optimism Governance Calendar notifications",
   "dependencies": {
     "@slack/bolt": "^3.17.0",
-    "googleapis": "^129.0.0",
-    "node-cron": "^3.0.3",
+    "axios": "^1.7.9",
     "dotenv": "^16.4.1",
-    "moment-timezone": "^0.5.45"
+    "moment-timezone": "^0.5.45",
+    "node-cron": "^3.0.3",
+    "node-ical": "^0.20.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",

@@ -2,33 +2,33 @@
 
 This Slack App sends notifications about Optimism Governance events from the official OP Governance Calendar. It provides:
 
-- Weekly summaries of upcoming events (every Monday at 9:00 AM CET)
-- Same-day event reminders (daily at 9:00 AM CET)
-- Formatted messages including event title, time in CET, description, and meeting links
+- Weekly summaries of upcoming events (every Monday at 9:00 AM EST)
+- Same-day event reminders (daily at 9:00 AM EST)
+- Formatted messages including event title, time in EST, description, and meeting links
+- `/getevents` slash command to manually check this week's events
 
 ## Setup Instructions
 
-### 1. Google Calendar API Setup
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com)
-2. Create a new project or select an existing one
-3. Enable the Google Calendar API
-4. Create an API Key in the Credentials section
-   - Optional: Restrict the API key to only Google Calendar API
-
-### 2. Slack App Setup
+### 1. Slack App Setup
 
 1. Create a new Slack App in your workspace
 2. Add the following Bot Token Scopes:
    - `chat:write`
    - `chat:write.public`
-3. Install the app to your workspace
-4. Note down the following credentials:
+   - `commands`
+3. Create a Slash Command:
+   - Command: `/getevents`
+   - Request URL: `https://your-app-url/slack/events`
+   - Description: "Get this week's Optimism Governance events"
+   - Usage Hint: "Just type /getevents to see upcoming events"
+4. Enable Socket Mode in your app settings
+5. Install the app to your workspace
+6. Note down the following credentials:
    - Bot User OAuth Token (`SLACK_BOT_TOKEN`)
    - Signing Secret (`SLACK_SIGNING_SECRET`)
    - App-Level Token (`SLACK_APP_TOKEN`) - Create one with `connections:write` scope
 
-### 3. Environment Variables
+### 2. Environment Variables
 
 1. Copy `.env.example` to `.env`
 2. Fill in the following variables:
@@ -38,43 +38,57 @@ SLACK_BOT_TOKEN=xoxb-your-bot-token
 SLACK_SIGNING_SECRET=your-signing-secret
 SLACK_APP_TOKEN=xapp-your-app-token
 SLACK_CHANNEL_ID=channel-to-post-to
-GOOGLE_API_KEY=your-google-api-key
 PORT=3000
 ```
 
-### 4. Installation and Running
+### 3. Installation and Running
 
 1. Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 2. Build the TypeScript code:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 3. Start the application:
 
 ```bash
-npm start
+pnpm start
 ```
 
 For development with auto-reload:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## Features
 
 - Monitors the official [Optimism Governance Calendar](https://calendar.google.com/calendar/embed?src=c_fnmtguh6noo6qgbni2gperid4k%40group.calendar.google.com)
-- Sends weekly summaries every Monday at 9:00 AM CET
-- Sends same-day reminders at 9:00 AM CET
+- Sends weekly summaries every Monday at 9:00 AM EST
+- Sends same-day reminders at 9:00 AM EST
 - Includes links to the [Optimism Voting Platform](https://vote.optimism.io/)
 - Formats messages with event details, times, and meeting links
+- Handles both recurring and one-time events
+- Properly handles timezone conversion to EST
+
+## Project Structure
+
+```
+src/
+├── app.ts           # Main app setup and command handlers
+├── index.ts         # Application entry point
+├── config/          # Configuration and environment variables
+├── types/           # TypeScript type definitions
+├── utils/           # Utility functions
+├── services/        # Core business logic
+└── jobs/           # Scheduled tasks
+```
 
 ## Contributing
 
