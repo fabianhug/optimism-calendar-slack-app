@@ -82,6 +82,12 @@ For development with auto-reload:
 pnpm run dev
 ```
 
+## 🚄 One-click Deploy on Railway
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template/OZNDdx?referralCode=2r-l5E)
+
+(Make sure to fill in the environment variables in Railway)
+
 ## ✨ Features
 
 - 📅 Monitors the official [Optimism Governance Calendar](https://calendar.google.com/calendar/embed?src=c_fnmtguh6noo6qgbni2gperid4k%40group.calendar.google.com)
